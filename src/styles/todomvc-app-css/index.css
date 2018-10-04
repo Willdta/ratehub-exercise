@@ -314,6 +314,22 @@ body {
 	margin: 10px;
 }
 
+/* TAG DESCRIPTION STYLING */
+
+.tag-description-container {
+	margin: 10px;
+	height: 40px;
+	display: flex;
+}
+
+.tag-description-container .tag {
+	background: #a29bfe;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 10px;
+}
+
 .filters {
 	margin: 0;
 	padding: 0;
