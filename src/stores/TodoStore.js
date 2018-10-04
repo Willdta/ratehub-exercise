@@ -55,7 +55,9 @@ export default class TodoStore {
 	}
 
 	@action addTodo = (title, tags) => {
-		this.todos = [...this.todos, new TodoModel(this, Utils.uuid(), title, [...new Set(tags)], false)];
+		const lowerCaseTags = tags.map(tag => tag.toLowerCase())
+
+		this.todos = [...this.todos, new TodoModel(this, Utils.uuid(), title, [...new Set(lowerCaseTags)], false)];
 
 		const filteredArr = [];
 
