@@ -48,6 +48,13 @@ export default class TodoStore {
 		this.tagDescriptions = [...this.tagDescriptions, tag];
 	}
 
+	@action changeTodoFilter = filter => {
+		this.filter = filter;
+
+		console.log(this.filter)
+		
+	}
+
 	toggleAll (checked) {
 		this.todos.forEach(
 			todo => todo.completed = checked

@@ -7,23 +7,28 @@ import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from '../constants';
 @observer
 export default class TodoFooter extends React.Component {
 	render() {
-		const todoStore = this.props.todoStore;
-		if (!todoStore.activeTodoCount && !todoStore.completedCount)
+		const { 
+			activeTodoCount, 
+			completedCount,
+			changeTodoFilter 
+		} = this.props.todoStore;
+		
+		if (!activeTodoCount && !completedCount)
 			return null;
 
-		const activeTodoWord = pluralize(todoStore.activeTodoCount, 'item');
+		const activeTodoWord = pluralize(activeTodoCount, 'item');
 
 		return (
 			<footer className="footer">
 				<span className="todo-count">
-					<strong>{todoStore.activeTodoCount}</strong> {activeTodoWord} left
+					<strong>{activeTodoCount}</strong> {activeTodoWord} left
 				</span>
 				<ul className="filters">
-					{this.renderFilterLink(ALL_TODOS, "", "All")}
-					{this.renderFilterLink(ACTIVE_TODOS, "active", "Active")}
-					{this.renderFilterLink(COMPLETED_TODOS, "completed", "Completed")}
-				</ul>
-				{ todoStore.completedCount === 0
+					<li className="li-style" onClick={() => changeTodoFilter('all')}>All</li>
+					<li className="li-style" onClick={() => changeTodoFilter('active')}>Active</li>
+					<li className="li-style" onClick={() => changeTodoFilter('complete')}>Complete</li>
+    		</ul>
+				{ completedCount === 0
 					? null
 					: 	<button
 							className="clear-completed"
