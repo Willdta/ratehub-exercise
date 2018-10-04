@@ -330,6 +330,33 @@ body {
 	margin: 0 10px;
 }
 
+/* FOOTER TAG STYLING */
+
+.filterable-tag-section {
+	display: flex;
+	position: absolute;
+	bottom: -250px;
+	align-items: center;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+}
+
+.filterable-tag-section h2 {
+	text-align: center;
+}
+
+.filterable-tag-section span {
+	margin: 0 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #f78fb3;
+}
+
 .filters {
 	margin: 0;
 	padding: 0;
