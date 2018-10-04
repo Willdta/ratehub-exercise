@@ -8,51 +8,38 @@ import FilterableTagSection from './FilterableTagSection'
 export default class TodoFooter extends React.Component {
 	render() {
 		const { 
-			activeTodoCount, 
+			activeTodoCount,
+			todos, 
 			completedCount,
 			changeTodoFilter,
-			filterableTags
 		} = this.props.todoStore;
-		
-		if (!activeTodoCount && !completedCount)
-			return null;
 
 		const activeTodoWord = pluralize(activeTodoCount, 'item');
 
 		return (
 			<div className="footer-section">
-				<footer className="footer">
-					<span className="todo-count">
-						<strong>{activeTodoCount}</strong> {activeTodoWord} left
-					</span>
-					<ul className="filters">
-						<li className="li-style" onClick={() => changeTodoFilter('all')}>All</li>
-						<li className="li-style" onClick={() => changeTodoFilter('active')}>Active</li>
-						<li className="li-style" onClick={() => changeTodoFilter('complete')}>Complete</li>
-					</ul>
-					{ completedCount === 0
-						? null
-						: 	<button
-								className="clear-completed"
-								onClick={this.clearCompleted}>
-								Clear completed
-							</button>
-					}
-				</footer>
+				{todos.length > 0 && (
+					<footer className="footer">
+						<span className="todo-count">
+							<strong>{activeTodoCount}</strong> {activeTodoWord} left
+						</span>
+						<ul className="filters">
+							<li className="li-style" onClick={() => changeTodoFilter('all')}>All</li>
+							<li className="li-style" onClick={() => changeTodoFilter('active')}>Active</li>
+							<li className="li-style" onClick={() => changeTodoFilter('complete')}>Complete</li>
+						</ul>
+						{ completedCount === 0
+							? null
+							: 	<button
+									className="clear-completed"
+									onClick={this.clearCompleted}>
+									Clear completed
+								</button>
+						}
+					</footer>
+				)}
 
 				<FilterableTagSection {...this.props} />
-				{/* {filterableTags.map((tag, index) => (
-					<span 
-					key={index} 
-					style={{
-						'position': 'relative',
-						'bottom': '-300px',
-						'padding': '0 10px'
-					}}
-					onClick={() => changeTodoFilter(tag)}>
-						{tag}
-					</span>	
-				))} */}
 			</div>
 		);
 	}
