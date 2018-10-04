@@ -370,6 +370,10 @@ body {
 	display: inline;
 }
 
+.filters li:nth-of-type(2) {
+	padding: 0 10px;
+}
+
 .filters li a {
 	color: inherit;
 	margin: 3px;
