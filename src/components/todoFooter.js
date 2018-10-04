@@ -4,8 +4,7 @@ import { observer } from 'mobx-react';
 import { pluralize } from '../utils';
 import FilterableTagSection from './FilterableTagSection'
 
-@observer
-export default class TodoFooter extends React.Component {
+@observer export default class TodoFooter extends React.Component {
 	render() {
 		const { 
 			activeTodoCount,

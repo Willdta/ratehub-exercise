@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {observer} from 'mobx-react';
-import {observable, expr} from 'mobx';
+import { observer } from 'mobx-react';
+import { observable, expr } from 'mobx';
 
 const ESCAPE_KEY = 27;
 const ENTER_KEY = 13;
 
-@observer
-export default class TodoItem extends React.Component {
+@observer export default class TodoItem extends React.Component {
 	@observable editText = "";
 
 	render() {
