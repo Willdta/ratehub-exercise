@@ -38,6 +38,8 @@ export default class TodoStore {
 
 	@action addTodo = (title, tags) => {
 		this.todos.push(new TodoModel(this, Utils.uuid(), title, [...new Set(tags)], false));
+
+		this.tagDescriptions = [];
 	}
 
 	@action addTags = tag => {
