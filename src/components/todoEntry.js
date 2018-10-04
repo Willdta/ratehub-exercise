@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {observer} from 'mobx-react';
-
-const ENTER_KEY = 13;
+import { observer } from 'mobx-react';
+import TagDescriptionSection from './TagDescriptionSection';
 
 @observer export default class TodoEntry extends React.Component {
 	addTags = () => {
@@ -49,9 +48,7 @@ const ENTER_KEY = 13;
 					}}
 				/>
 
-				{tagDescriptions.map((tag, index) => (
-					<span key={index}>{tag}</span>)
-				)}
+				<TagDescriptionSection tagDescriptions={tagDescriptions} />
 
 				<div className="add-todo-button-container">
 					<button 
