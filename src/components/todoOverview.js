@@ -12,8 +12,9 @@ import TodoItem from './todoItem';
 			filteredTodos 
 		} = this.props.todoStore;
 
-		if (todos.length === 0)
+		if (todos.length === 0) {
 			return null;
+		}
 		
 		return (
 			<section className="main">
@@ -24,13 +25,13 @@ import TodoItem from './todoItem';
 					checked={activeTodoCount === 0}
 				/>
 				<ul className="todo-list">
-					{filteredTodos.map(todo =>
-						(<TodoItem
+					{filteredTodos.map(todo => (
+						<TodoItem
 							key={todo.id}
 							todo={todo}
 							viewStore={viewStore}
-						/>)
-					)}
+						/>
+					))}
 				</ul>
 			</section>
 		)
