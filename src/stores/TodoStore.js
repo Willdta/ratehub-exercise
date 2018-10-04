@@ -49,7 +49,19 @@ export default class TodoStore {
 	}
 
 	@action addTodo = (title, tags) => {
-		this.todos.push(new TodoModel(this, Utils.uuid(), title, [...new Set(tags)], false));
+		this.todos = [...this.todos, new TodoModel(this, Utils.uuid(), title, [...new Set(tags)], false)];
+
+		const filteredArr = [];
+
+		for (const tag of this.tagDescriptions) {
+			if (!this.filterableTags.includes(tag)) {
+				filteredArr.push(tag.toLowerCase());
+			}
+		}
+
+		const filteredUniques = filteredArr.filter((tag, i, arr) => arr.indexOf(tag) === i);
+
+		this.filterableTags = [...this.filterableTags, ...filteredUniques];
 
 		this.tagDescriptions = [];
 	}
@@ -60,9 +72,6 @@ export default class TodoStore {
 
 	@action changeTodoFilter = filter => {
 		this.filter = filter;
-
-		console.log(this.filter)
-		
 	}
 
 	toggleAll (checked) {

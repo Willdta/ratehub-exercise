@@ -10,7 +10,8 @@ export default class TodoFooter extends React.Component {
 		const { 
 			activeTodoCount, 
 			completedCount,
-			changeTodoFilter 
+			changeTodoFilter,
+			filterableTags
 		} = this.props.todoStore;
 		
 		if (!activeTodoCount && !completedCount)
@@ -19,24 +20,30 @@ export default class TodoFooter extends React.Component {
 		const activeTodoWord = pluralize(activeTodoCount, 'item');
 
 		return (
-			<footer className="footer">
-				<span className="todo-count">
-					<strong>{activeTodoCount}</strong> {activeTodoWord} left
-				</span>
-				<ul className="filters">
-					<li className="li-style" onClick={() => changeTodoFilter('all')}>All</li>
-					<li className="li-style" onClick={() => changeTodoFilter('active')}>Active</li>
-					<li className="li-style" onClick={() => changeTodoFilter('complete')}>Complete</li>
-    		</ul>
-				{ completedCount === 0
-					? null
-					: 	<button
-							className="clear-completed"
-							onClick={this.clearCompleted}>
-							Clear completed
-						</button>
-				}
-			</footer>
+			<div className="footer-section">
+				<footer className="footer">
+					<span className="todo-count">
+						<strong>{activeTodoCount}</strong> {activeTodoWord} left
+					</span>
+					<ul className="filters">
+						<li className="li-style" onClick={() => changeTodoFilter('all')}>All</li>
+						<li className="li-style" onClick={() => changeTodoFilter('active')}>Active</li>
+						<li className="li-style" onClick={() => changeTodoFilter('complete')}>Complete</li>
+					</ul>
+					{ completedCount === 0
+						? null
+						: 	<button
+								className="clear-completed"
+								onClick={this.clearCompleted}>
+								Clear completed
+							</button>
+					}
+				</footer>
+
+				{filterableTags.map((tag, index) => (
+					<span key={index}>{tag}</span>	
+				))}
+			</div>
 		);
 	}
 
