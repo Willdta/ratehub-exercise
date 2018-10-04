@@ -6,6 +6,8 @@ import * as Utils from '../utils';
 export default class TodoStore {
 	@observable todos = [];
 	@observable tagDescriptions = [];
+	@observable filterableTags = [];
+	@observable filter = 'all';
 
 	@computed get activeTodoCount() {
 		return this.todos.reduce(
