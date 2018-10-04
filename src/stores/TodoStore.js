@@ -20,7 +20,11 @@ export default class TodoStore {
 		return this.todos.length - this.activeTodoCount;
 	}
 
+	// Here we filter todos based on what `this.filter` is equal to
 	@computed get filteredTodos() {
+
+		// Check whether `this.filter` is equal to any
+		// of the tags listed in the todos object
 		const tagCheck = this.todos.filter(todo => (
 			todo.tags.some(tag => tag === this.filter)
 		))
@@ -54,30 +58,44 @@ export default class TodoStore {
 		);
 	}
 
+	// Here we add the todo along with the tags
 	@action addTodo = (title, tags) => {
+
+		// make all tags lowercase to prevent duplicates in case of unnecessary uppercase
 		const lowerCaseTags = tags.map(tag => tag.toLowerCase())
 
+		// Along with id, title and completed values, we add on an array
+		// of tags and remove any duplicates that might be added
 		this.todos = [...this.todos, new TodoModel(this, Utils.uuid(), title, [...new Set(lowerCaseTags)], false)];
 
 		const filteredArr = [];
 
+		// Here we check if the filterableTags array includes
+		// any value of tagDescriptions and if not push to the
+		// filteredArr array
 		for (const tag of this.tagDescriptions) {
 			if (!this.filterableTags.includes(tag)) {
 				filteredArr.push(tag.toLowerCase());
 			}
 		}
 
+		// Then we remove duplicates
 		const filteredUniques = filteredArr.filter((tag, i, arr) => arr.indexOf(tag) === i);
 
+		// Here we spread the contents of filteredArr alongside the existing items in
+		// the filterableTags array
 		this.filterableTags = [...this.filterableTags, ...filteredUniques];
 
+		// Set the tagDescriptions array to empty to clear the previus declared tags
 		this.tagDescriptions = [];
 	}
 
+	// Simple concatination of any tags added to the tagDescriptions array
 	@action addTags = tag => {
 		this.tagDescriptions = [...this.tagDescriptions, tag];
 	}
 
+	// Change `this.filter` value to whatever is passed onClick
 	@action changeTodoFilter = filter => {
 		this.filter = filter;
 	}
