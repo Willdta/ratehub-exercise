@@ -6,10 +6,12 @@ export default class TodoModel {
 	@observable title;
 	@observable completed;
 
-	constructor(store, id, title, completed) {
+	constructor(store, id, title, tags, completed) {
 		this.store = store;
 		this.id = id;
 		this.title = title;
+		// added tags
+		this.tags = tags;
 		this.completed = completed;
 	}
 
@@ -29,11 +31,12 @@ export default class TodoModel {
 		return {
 			id: this.id,
 			title: this.title,
+			tags: this.tags,
 			completed: this.completed
 		};
 	}
 
 	static fromJS(store, object) {
-		return new TodoModel(store, object.id, object.title, object.completed);
+		return new TodoModel(store, object.id, object.title, object.tags, object.completed);
 	}
 }

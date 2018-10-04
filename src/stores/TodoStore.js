@@ -1,5 +1,5 @@
-import {observable, computed, reaction} from 'mobx';
-import TodoModel from '../models/TodoModel'
+import { observable, computed, action, reaction } from 'mobx';
+import TodoModel from '../models/TodoModel';
 import * as Utils from '../utils';
 
 
@@ -35,8 +35,8 @@ export default class TodoStore {
 		);
 	}
 
-	addTodo (title) {
-		this.todos.push(new TodoModel(this, Utils.uuid(), title, false));
+	@action addTodo = (title, tags) => {
+		this.todos.push(new TodoModel(this, Utils.uuid(), title, [...new Set(tags)], false));
 	}
 
 	toggleAll (checked) {
