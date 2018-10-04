@@ -6,7 +6,19 @@ import {observer} from 'mobx-react';
 const ENTER_KEY = 13;
 
 @observer export default class TodoEntry extends React.Component {
+		addTags = () => {
+		const { addTags } = this.props.todoStore
+		const { value } = this.refs.tagValue
+	
+		if (value) {
+			addTags(value)
+			this.refs.tagValue.value = ''
+		}
+	}
+
 	render() {
+		const { tagDescriptions } = this.props.todoStore
+
 		return (
 		<div>
 			<input
@@ -17,11 +29,21 @@ const ENTER_KEY = 13;
 				autoFocus={true}
 			/>
 			<input
-				ref="newField"
+				ref="tagValue"
 				className="new-todo"
 				placeholder="Add a tag"
 				autoFocus={true}
+				onKeyPress={e => {
+					e.key === 'Enter' && (
+						this.addTags()
+					)
+				}}
 			/>
+
+			{tagDescriptions.map((tag, index) => (
+				<span key={index}>{tag}</span>)
+			)}
+
 			<div className="add-todo-button-container">
 				<button className="button-style">
 					Add Todo
