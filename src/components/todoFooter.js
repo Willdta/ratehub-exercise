@@ -41,7 +41,16 @@ export default class TodoFooter extends React.Component {
 				</footer>
 
 				{filterableTags.map((tag, index) => (
-					<span key={index}>{tag}</span>	
+					<span 
+					key={index} 
+					style={{
+						'position': 'relative',
+						'bottom': '-300px',
+						'padding': '0 10px'
+					}}
+					onClick={() => changeTodoFilter(tag)}>
+						{tag}
+					</span>	
 				))}
 			</div>
 		);

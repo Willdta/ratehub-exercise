@@ -21,12 +21,18 @@ export default class TodoStore {
 	}
 
 	@computed get filteredTodos() {
+		const tagCheck = this.todos.filter(todo => (
+			todo.tags.some(tag => tag === this.filter)
+		))
+
 		if (this.filter === 'all') {
 			return [...this.todos];
 		} else if (this.filter === 'complete') {
 			return this.todos.filter(todo => todo.completed);
 		} else if (this.filter === 'active') {
 			return this.todos.filter(todo => !todo.completed);
+		} else if (tagCheck) {
+			return tagCheck
 		}
 	}
 
@@ -72,6 +78,9 @@ export default class TodoStore {
 
 	@action changeTodoFilter = filter => {
 		this.filter = filter;
+
+		console.log(this.filter);
+		
 	}
 
 	toggleAll (checked) {
