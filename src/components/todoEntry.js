@@ -5,16 +5,30 @@ import {observer} from 'mobx-react';
 
 const ENTER_KEY = 13;
 
-@observer
-export default class TodoEntry extends React.Component {
+@observer export default class TodoEntry extends React.Component {
 	render() {
-		return (<input
-			ref="newField"
-			className="new-todo"
-			placeholder="What needs to be done?"
-			onKeyDown={this.handleNewTodoKeyDown}
-			autoFocus={true}
-		/>);
+		return (
+		<div>
+			<input
+				ref="newField"
+				className="new-todo"
+				placeholder="What needs to be done?"
+				onKeyDown={this.handleNewTodoKeyDown}
+				autoFocus={true}
+			/>
+			<input
+				ref="newField"
+				className="new-todo"
+				placeholder="Add a tag"
+				autoFocus={true}
+			/>
+			<div className="add-todo-button-container">
+				<button className="button-style">
+					Add Todo
+				</button>
+			</div>
+		</div>
+		);
 	}
 
 	handleNewTodoKeyDown = (event) => {
