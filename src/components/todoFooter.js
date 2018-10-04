@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {observer} from 'mobx-react';
-import {pluralize} from '../utils';
-import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from '../constants';
+import { observer } from 'mobx-react';
+import { pluralize } from '../utils';
+import FilterableTagSection from './FilterableTagSection'
 
 @observer
 export default class TodoFooter extends React.Component {
@@ -40,7 +40,8 @@ export default class TodoFooter extends React.Component {
 					}
 				</footer>
 
-				{filterableTags.map((tag, index) => (
+				<FilterableTagSection {...this.props} />
+				{/* {filterableTags.map((tag, index) => (
 					<span 
 					key={index} 
 					style={{
@@ -51,7 +52,7 @@ export default class TodoFooter extends React.Component {
 					onClick={() => changeTodoFilter(tag)}>
 						{tag}
 					</span>	
-				))}
+				))} */}
 			</div>
 		);
 	}

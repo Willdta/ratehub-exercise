@@ -78,9 +78,6 @@ export default class TodoStore {
 
 	@action changeTodoFilter = filter => {
 		this.filter = filter;
-
-		console.log(this.filter);
-		
 	}
 
 	toggleAll (checked) {
