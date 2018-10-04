@@ -20,6 +20,16 @@ export default class TodoStore {
 		return this.todos.length - this.activeTodoCount;
 	}
 
+	@computed get filteredTodos() {
+		if (this.filter === 'all') {
+			return [...this.todos];
+		} else if (this.filter === 'complete') {
+			return this.todos.filter(todo => todo.completed);
+		} else if (this.filter === 'active') {
+			return this.todos.filter(todo => !todo.completed);
+		}
+	}
+
 	subscribeServerToStore() {
 		reaction(
 			() => this.toJS(),
