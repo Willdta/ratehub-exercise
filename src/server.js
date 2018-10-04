@@ -11,7 +11,7 @@ import escape from 'jsesc';
 // import React from 'react';
 
 const app = express();
-app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')))
+app.use('/src', express.static(path.join(__dirname, '../src')))
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -31,8 +31,8 @@ const renderFullPage = html => {
 	<!doctype html>
 	<html lang="utf-8">
 		<head>
-			<link rel="stylesheet" href="/node_modules/todomvc-common/base.css">
-			<link rel="stylesheet" href="/node_modules/todomvc-app-css/index.css">
+			<link rel="stylesheet" href="/src/styles/todomvc-common/base.css">
+			<link rel="stylesheet" href="/src/styles/todomvc-app-css/index.css">
 			<script>
 				window.initialState = ${initialStateJSON}
 			</script>
